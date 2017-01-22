@@ -3,9 +3,8 @@ import os
 path = raw_input("What directory do you want to convert? ")
 path = path + "/" if not path.endswith("/") else path + ""
 directory = os.listdir(path)
+directory = [filename for filename in directory if not filename.startswith(".")]
 separator = "."
-
-directory.remove('.DS_Store')
 
 
 class UdimConvert(object):
