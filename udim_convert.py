@@ -1,16 +1,20 @@
 import os
 
-# Asks user to input a path to desired directory.
-path = raw_input("What directory do you want to convert? ")
+while True:
+    # Asks user to input a path to desired directory.
+    path = raw_input("What directory do you want to convert? ")
 
-# If path is draged and dropped it has '', this command removes them.
-path = path if not path.startswith("'") else path[1:-2]
+    # If path is draged and dropped it has '', this command removes them.
+    path = path if not path.startswith("'") else path[1:-2]
 
-# If user does not include slash at the end, this command adds it.
-path = path + "/" if not path.endswith("/") else path + ""
+    # If user does not include slash at the end, this command adds it.
+    path = path + "/" if not path.endswith("/") else path + ""
 
-if not os.path.exists(path):
-    raise RuntimeError("Path does not exist!")
+    if not os.path.exists(path):
+        print ("Path does not exist! Try again.")
+        continue
+    else:
+        break
 
 # Lists files in directory and removes all hidden files
 directory = os.listdir(path)
@@ -85,6 +89,13 @@ class UdimConvert(object):
 # Assigns the class to variable.
 udimConvert = UdimConvert()
 
-# Asks user about conversion type and passes it to convertUV method.
-user = raw_input("Do you want to convert 'from' or 'to' UDIM? ")
+while True:
+    # Asks user about conversion type and passes it to convertUV method.
+    user = raw_input("Do you want to convert 'from' or 'to' UDIM? ")
+    
+    if user not in ("from", "to"):
+        print ("Please give me valid method!")
+        continue
+    else:    
+        break
 udimConvert.convertUV(type=user)
