@@ -40,7 +40,7 @@ def makeAlias(os = None):
     user = getpass.getuser()
     
     # Defining paths for saving aliases based on os.
-    pathLinux = "/u/%s/.mycshrc" % (user)
+    pathLinux = "/u/%s/.bashcshrc" % (user)
     pathMac = "/Users/%s/.profile" % (user)
     path = pathLinux if not os == 'macos' else pathMac
     
