@@ -13,12 +13,13 @@ Todo:
     * add automatic system check
     * import platform   
     * print platform.system()
+    * macos returns "Darwin"
 
 """
 
 import sys
 import getpass
-
+w
 # Asks user to input desired alias and it's command.
 alias = raw_input("Give me alias: ")
 command = raw_input("Give me command: ")
