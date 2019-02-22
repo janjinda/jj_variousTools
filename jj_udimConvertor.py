@@ -17,11 +17,14 @@ while True:
         break
 
 # Lists files in directory and removes all hidden files
-directory = os.listdir(path)
+directory = (file for file in os.listdir(path) 
+             if os.path.isfile(os.path.join(path, file)))
 directory = [filename for filename in directory if not filename.startswith(".")]
 
 class UdimConvert(object):
     """Simple set of methods for renaming file between two udim standards."""
+    
+    
     
     def uvToUdim(self):
         """Takes u#_v# values and converts them to UDIM."""
@@ -47,7 +50,7 @@ class UdimConvert(object):
 
         # Finally renames files.
         os.rename(path + self.fileOld, path + fileNew)
-
+        
     def udimToUv(self):
         """Takes UDIM value and converts it to u#_v#."""
         
@@ -73,9 +76,9 @@ class UdimConvert(object):
 
     def convertUV(self, type=None):
         """Goes throught the directory list and runs other methods based on user input."""
-
+        
+        
         for self.fileOld in directory:
-
             self.filename = self.fileOld.split(".")[0]
             self.suffix = self.fileOld.split(".")[-1]
             
