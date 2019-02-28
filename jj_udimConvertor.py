@@ -1,3 +1,35 @@
+"""
+JJ Obj Toolkit is a set of simple scripts tailored to provide clean, easier and more effective
+workflow for handling OBJ files in Maya. Thanks to the Import as blend shape options it keeps all your scene
+hierarchy, geometry UVs, shader assignments etc.
+
+
+Installation
+============
+
+Copy jj_objToolkit.py from the zip file to your scripts folder. Usually at these locations ():
+
+
+Windows - \<user's directory>\My Documents/Maya\<version>\scripts
+
+MacOs - /Users/<user's directory>/Library/Preferences/Autodesk/maya/<version>/scripts
+
+Linux - $MAYA_APP_DIR/Maya/<version>/scripts
+
+
+Run following script or make a shelf button with following script.
+
+import jj_objToolkit
+jj_objToolkit.showUI()
+
+"""
+
+__author__ = "Jan Jinda"
+__version__ = "1.0.0"
+__documentation__ = "https://janjinda.artstation.com/pages/jj-obj-toolkit-doc"
+__email__ = "janjinda@janjinda.com"
+__website__ = "http://janjinda.com"
+
 import os
 
 while True:
