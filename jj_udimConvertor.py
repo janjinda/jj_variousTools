@@ -5,27 +5,17 @@ Installation
 ============
 
 
-Copy jj_objToolkit.py from the zip file to your scripts folder. Usually at these locations ():
-
-
-Windows - \<user's directory>\My Documents/Maya\<version>\scripts
-
-MacOs - /Users/<user's directory>/Library/Preferences/Autodesk/maya/<version>/scripts
-
-Linux - $MAYA_APP_DIR/Maya/<version>/scripts
-
-
-Run following script or make a shelf button with following script.
+Run following in Command line (Win) or Terminal (MacOS, Linux).
 
 Windows - C:\Python27\python.exe <path to the script file>
-MacOs - python <path to the script file>
+MacOS - python <path to the script file>
 Linux - python <path to the script file>
 
 """
 
 __author__ = "Jan Jinda"
 __version__ = "0.0.2"
-__documentation__ = "https://janjinda.artstation.com/pages/jj-obj-toolkit-doc"
+__documentation__ = "http://janjinda.artstation.com/pages/jj-udim-convertor-doc"
 __email__ = "janjinda@janjinda.com"
 __website__ = "http://janjinda.com"
 
