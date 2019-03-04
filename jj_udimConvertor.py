@@ -1,7 +1,5 @@
 """
-JJ Obj Toolkit is a set of simple scripts tailored to provide clean, easier and more effective
-workflow for handling OBJ files in Maya. Thanks to the Import as blend shape options it keeps all your scene
-hierarchy, geometry UVs, shader assignments etc.
+JJ UDIM Convertor
 
 Installation
 ============
@@ -60,50 +58,50 @@ def convertUV(type=None):
     """Goes throught the directory list and runs other methods based on user input."""
 
     for fileOld in directory:
-        filename = fileOld.split(".")[0]
         suffix = fileOld.split(".")[-1]
+        filename = fileOld.strip('.%s' % suffix)
 
         if type == 'from':
             # Finds UDIM value in last 4 characters at the end of filename.
-            udim = fileOld.strip(".%s" % suffix)[-4:]
+            udim = filename[-4:]
             
-            if not udim.isdigit():
+            r = re.compile('\d{4}')
+            if r.match(udim) is None:
                 print ("%s ---> SKIPPED" % fileOld)
                 continue
             
             else:
                 # Generates u and v values from UDIM.
                 u = int(udim[-1]) if int(udim[-1]) != 0 else 10
-                v = int(udim[1:3]) + 1 if u != 10 else int(udim[1:3])
-
-                # Puts new u and v together to form a string.
-                uv = ("u%s_v%s" % (u, v))
+                v = (int(udim[0:3]) + 1 - 100) if u != 10 else (int(udim[0:3]) - 100)
 
                 # Creates a new filename using previous variables and prints rename results.
              
-                fileNew = ("%s_%s.%s" % (filename, uv, suffix))
+                fileNew = ("%s_u%s_v%s.%s" % (filename.strip(udim)[:-1], u, v, suffix))
             
         elif type == 'to':
 
-            r = re.compile('^_u\d+_v\d+$')
-            if r.match('_%s_%s' % (filename.split('_')[-2], filename.split('_')[-1])) is None:
+            r = re.compile('.+\_u\d+_v\d+$')
+            if r.match(filename) is None:
                 print ("%s ---> SKIPPED" % fileOld)
                 continue
 
             else:
                 # Finds u and v values in last two list items.         
-                u = (filename.split("_")[-2])[1:]
-                v = (filename.split("_")[-1])[1:]
+                u = int((filename.split("_")[-2])[1:])
+                v = int((filename.split("_")[-1])[1:])
 
-                # Generates new u and v values.
-                newU = int(u) if int(u) != 10 else 0
-                newV = "%02d" % ((int(v) - 1) if newU != 0 else int(v))
+                if u > 10:
+                    print ("%s ---> SKIPPED" % fileOld)
+                    continue
 
-                # Puts new u and v together to get UDIM.
-                udim = ("1%s%s" % (newV, newU))
+                else:
+                    # Generates new u and v values.
+                    udimU = u if u != 10 else 0
+                    udimV = ('%02d' % (v - 1 + 100)) if udimU != 0 else (v + 100)
 
-                # Creates a new filename using previous variables and prints rename results.
-                fileNew = ("%s.%s.%s" % ((filename.strip("_u%s_v%s" % (u, v))), udim, suffix))
+                    # Creates a new filename using previous variables and prints rename results.
+                    fileNew = ("%s.%s%s.%s" % ((filename.strip("_u%s_v%s" % (u, v))), udimV, udimU, suffix))
             
         else:
             raise RuntimeError("Wrong conversion type given!")
