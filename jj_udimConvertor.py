@@ -17,14 +17,14 @@ Linux - $MAYA_APP_DIR/Maya/<version>/scripts
 
 Run following script or make a shelf button with following script.
 
-
-import jj_objToolkit
-jj_objToolkit.showUI()
+Windows - C:\Python27\python.exe <path to the script file>
+MacOs - python <path to the script file>
+Linux - python <path to the script file>
 
 """
 
 __author__ = "Jan Jinda"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __documentation__ = "https://janjinda.artstation.com/pages/jj-obj-toolkit-doc"
 __email__ = "janjinda@janjinda.com"
 __website__ = "http://janjinda.com"
