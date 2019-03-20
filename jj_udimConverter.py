@@ -37,28 +37,6 @@ __website__ = "http://janjinda.com"
 import os
 import re
 
-while True:
-    # Asks user to input a path to desired directory
-    path = raw_input("What directory do you want to convert? ")
-
-    # If path is dragged and dropped it has '', this command removes them
-    path = path if not path.startswith("'") else path[1:-2]
-
-    # If user does not include slash at the end, this command adds it
-    path = path + "/" if not path.endswith("/") else path + ""
-    
-    # If path does not exist ask again
-    if not os.path.exists(path):
-        print ("Path does not exist! Try again.")
-        continue
-    else:
-        break
-
-# Lists files in directory and removes all hidden files
-directory = sorted((file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))))
-directory = [filename for filename in directory if not filename.startswith(".")]
-
-
 def convertUDIM(type=None):
     """Main function converts UDIM to _uU_vV and vice versa
     Parameters:
@@ -142,5 +120,26 @@ while True:
         continue
     else:
         break
+while True:
+    # Asks user to input a path to desired directory
+    path = raw_input("What directory do you want to convert? ")
 
-convertUV(type=user)
+    # If path is dragged and dropped it has '', this command removes them
+    path = path if not path.startswith("'") else path[1:-2]
+
+    # If user does not include slash at the end, this command adds it
+    path = path + "/" if not path.endswith("/") else path + ""
+    
+    # If path does not exist ask again
+    if not os.path.exists(path):
+        print ("Path does not exist! Try again.")
+        continue
+    else:
+        break
+
+        
+# Lists files in directory and removes all hidden files
+directory = sorted((file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))))
+directory = [filename for filename in directory if not filename.startswith(".")]
+      
+convertUDIM(type=user)
