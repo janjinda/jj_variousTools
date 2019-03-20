@@ -29,7 +29,7 @@ Linux (Terminal) - python <path to the script>/jj_udim_converter.py
 """
 
 __author__ = "Jan Jinda"
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __documentation__ = "http://janjinda.artstation.com/pages/jj-udim-converter-doc"
 __email__ = "janjinda@janjinda.com"
 __website__ = "http://janjinda.com"
@@ -59,7 +59,7 @@ directory = sorted((file for file in os.listdir(path) if os.path.isfile(os.path.
 directory = [filename for filename in directory if not filename.startswith(".")]
 
 
-def convertUV(type=None):
+def convertUDIM(type=None):
     """Main function converts UDIM to _uU_vV and vice versa
     Parameters:
         type (string): type of conversion
