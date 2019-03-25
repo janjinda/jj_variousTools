@@ -30,7 +30,7 @@ Linux (Terminal) - python <path to the script>/jj_udim_converter.py
 
 __author__ = "Jan Jinda"
 __version__ = "1.0.0"
-__documentation__ = "http://janjinda.artstation.com/pages/jj-udim-converter-doc"
+__documentation__ = "http://janjinda.artstation.com/pages/jj-udim-converter-documentation"
 __email__ = "janjinda@janjinda.com"
 __website__ = "http://janjinda.com"
 
@@ -125,25 +125,27 @@ while True:
 
     # If path does not exist ask again
     if not os.path.exists(path):
-        print ("Path does not exist! Try again.")
+        print ("Path not valid exist. Try again.")
         continue
     else:
         break
-
-
-while True:
-    # Asks user about conversion type and passes it to convertUV method
-    user = raw_input("Do you want to convert 'from' or 'to' UDIM format? ")
-
-    if user not in ("from", "to"):
-        print ("Please give me valid method.")
-        continue
-    else:
-        break
-
 
 # Lists files in directory and removes all hidden files
 directory = sorted((i for i in os.listdir(path) if os.path.isfile(os.path.join(path, i))))
 directory = [ii for ii in directory if not ii.startswith(".")]
 
-convertUDIM(cType=user)
+if len(directory) == 0:
+    print "The directory is empty."
+
+else:
+    while True:
+        # Asks user about conversion type and passes it to convertUV method
+        user = raw_input("Do you want to convert 'from' or 'to' UDIM format? ")
+
+        if user not in ("from", "to"):
+            print ("Please give me valid method.")
+            continue
+        else:
+            break
+
+    convertUDIM(cType=user)
